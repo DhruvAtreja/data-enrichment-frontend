@@ -101,7 +101,18 @@ const Home = () => {
   };
 
   return (
-    <Box p="xl" pos="relative" style={{ backgroundColor: "black" }}>
+    <Box
+      p="xl"
+      pos="relative"
+      style={{
+        backgroundColor: "black",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <LoadingOverlay visible={isLoading} />
       <Group
         style={{ position: "absolute", top: "10px", right: "10px" }}
@@ -111,20 +122,43 @@ const Home = () => {
       </Group>
       <Box
         style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Text color="white" style={{ fontSize: "3rem", marginBottom: "20px" }}>
+          Data Enrichment using LangGraph
+        </Text>
+
+        <InputArea onSendMessage={handleInputSubmit} />
+      </Box>
+
+      <Box
+        style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          height: "calc(100vh - 60px)",
         }}
       >
         <Image
-          src="/logo.jpeg"
+          src="/langgraph.svg"
           alt="Rounded image"
-          radius="50%"
-          style={{ marginBottom: "20px", width: "100px", height: "100px" }}
+          radius="10px"
+          style={{
+            position: "absolute",
+            top: "10px",
+            left: "30px",
+            width: "150px",
+            height: "50px",
+            objectFit: "contain",
+          }}
         />
-        <Grid gutter="md" style={{ maxWidth: "600px" }}>
+
+        <Grid gutter="md" style={{ width: "50%" }}>
           {exampleDescriptions.map((description, index) => (
             <Grid.Col key={index} span={6}>
               <Card
@@ -142,14 +176,13 @@ const Home = () => {
                 }}
                 onClick={() => handleSubmit(description)}
               >
-                <Text size="sm" color="dimmed">
+                <Text style={{ fontSize: "0.9rem" }} color="dimmed">
                   {description}
                 </Text>
               </Card>
             </Grid.Col>
           ))}
         </Grid>
-        <InputArea onSendMessage={handleInputSubmit} />
       </Box>
     </Box>
   );
@@ -171,16 +204,19 @@ const InputArea = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: 0 }}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ padding: 0, width: "70%", marginBottom: "100px" }}
+    >
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <div
           style={{
             display: "flex",
-            position: "fixed",
-            width: "66%",
+            width: "100%",
             height: "60px",
             bottom: "5px",
             justifyContent: "center",
+            position: "relative",
           }}
         >
           <input

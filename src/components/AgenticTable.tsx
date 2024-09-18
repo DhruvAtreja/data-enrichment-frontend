@@ -11,6 +11,7 @@ import {
   Box,
   ScrollArea,
   useMantineTheme,
+  Image,
 } from "@mantine/core";
 import {
   IconCheck,
@@ -24,6 +25,7 @@ import {
 import { useState, useEffect } from "react";
 import { AGENT_FAILED, AGENT_LOADING } from "../constants/AgentTableConstants";
 import { AgenticTableCell } from "./AgenticTableCell";
+import { useNavigate } from "react-router-dom";
 
 const LANGCHAIN_API_KEY = import.meta.env.VITE_LANGCHAIN_API_KEY;
 const LANGGRAPH_URL = import.meta.env.VITE_LANGGRAPH_URL;
@@ -36,12 +38,12 @@ export const AgenticTable = () => {
   const [newColumnDescription, setNewColumnDescription] = useState<string>("");
   const [isAddColumnModalOpen, setIsAddColumnModalOpen] = useState(false);
   const [isAddTargetModalOpen, setIsAddTargetModalOpen] = useState(false);
-
   const [targets, setTargets] = useState<string[]>([]);
   const [newTarget, setNewTarget] = useState<string>("");
   const [targetLabel, setTargetLabel] = useState<string>("Target");
   const [newTargetLabel, setNewTargetLabel] = useState<string>(targetLabel);
   const [editingTargetLabel, setEditingTargetLabel] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const [targetData, setTargetData] = useState<
     {
@@ -275,6 +277,21 @@ export const AgenticTable = () => {
         backgroundColor: theme.colors.dark[7],
       }}
     >
+      <Image
+        src="/langgraph.svg"
+        alt="Rounded image"
+        radius="10px"
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "30px",
+          width: "150px",
+          height: "50px",
+          objectFit: "contain",
+          cursor: "pointer",
+        }}
+        onClick={() => navigate("/")}
+      />
       <Box
         style={{
           top: "10px",
